@@ -406,16 +406,15 @@ Lakeprobe-main/
 
 **Total: 17 modules, 8,338 lines of code**
 
----
+## Citation
 
+```bibtex
 @inproceedings{lakeprobe2026,
   title     = {LakeProbe: Evidence-Based Natural Language Query Engine for Schema-Less Data Lakes},
   booktitle = {Proceedings of the VLDB Endowment (Demo Track)},
-  year      = {2026},
-  author    = {Li, Kaiyu and An, Jia and Sun, Qi}
+  year      = {2026}
 }
-
----
+```
 
 ## Authors
 
