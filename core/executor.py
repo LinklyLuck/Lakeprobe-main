@@ -421,7 +421,7 @@ class PolarsExecutor:
 # Main entry
 def execute_plan(plan: ExecutablePlan) -> dict:
     """
-    Executor main entry point: Executes the operator plan.
+    Executor main entry point: Executes the operator plan
         1.Selects the DuckDB or Polars backend based on the configuration.
         2.DuckDB uses a singleton connection for performance.
     """

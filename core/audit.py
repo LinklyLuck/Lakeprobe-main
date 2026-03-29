@@ -38,7 +38,7 @@ def create_audit_record(
     execution_result: dict,
     user_override: dict | None = None,
 ) -> AuditRecord:
-    #Construct a complete AuditRecord.
+    #Construct a complete AuditRecord
     record = AuditRecord(
         raw_query=raw_query,
         query_intent=intent.model_dump(),

@@ -182,7 +182,7 @@ def _rescore_candidates(merged: dict) -> dict:
 def _classify_zone(score: float, max_score: float,
                    all_scores: list[float] = None) -> str:
     """
-    Three-zone threshold routing with adaptive thresholds.
+    Three-zone threshold routing with adaptive thresholds
     When score distribution is available, adapts thresholds based on
     the gap between top candidates. This handles cases where all scores
     are clustered (should be more cautious) vs clearly separated.

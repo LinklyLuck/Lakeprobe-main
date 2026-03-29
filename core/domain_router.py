@@ -415,7 +415,7 @@ def route_domain(
     candidate_summaries: list[dict] = None,
 ) -> DomainRoutingResult:
     """
-    Main domain routing entry.
+    Main domain routing entry
     Args:
         intent_dict: PartA output (QueryIntent as dict)
         mode: "rule" | "embedding" | "llm" | "auto" | "off"

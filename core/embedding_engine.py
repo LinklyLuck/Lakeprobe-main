@@ -429,7 +429,7 @@ _ann_index: Optional[ANNIndex] = None
 
 
 def get_ann_index() -> ANNIndex:
-    """Get or create the global ANN index singleton."""
+    """Get or create the global ANN index singleton"""
     global _ann_index
     if _ann_index is None:
         _ann_index = ANNIndex()
