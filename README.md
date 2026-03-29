@@ -434,11 +434,7 @@ Lakeprobe-main/
 ```bibtex
 @inproceedings{lakeprobe2026,
   title     = {LakeProbe: Evidence-Based Natural Language Query Engine for Schema-Less Data Lakes},
-<<<<<<< HEAD
   booktitle = {VLDB 2026 Demo Track (under review)},
-=======
-  booktitle = {Proceedings of the VLDB Endowment (Demo Track)},
->>>>>>> f1edde0 (update)
   year      = {2026},
   author    = {Li, Kaiyu and An, Jia and Sun, Qi}
 }
