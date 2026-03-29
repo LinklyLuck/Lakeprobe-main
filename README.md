@@ -408,18 +408,6 @@ Lakeprobe-main/
 
 ---
 
-## Citation
-
-```bibtex
-@inproceedings{lakeprobe2026,
-  title     = {LakeProbe: Evidence-Based Natural Language Query Engine for Schema-Less Data Lakes},
-  booktitle = {Proceedings of the VLDB Endowment (Demo Track)},
-  year      = {2026}
-}
-```
-
----
-
 ## License
 
 Research use only. Contact authors for commercial licensing.
