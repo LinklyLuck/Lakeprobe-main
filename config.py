@@ -24,8 +24,8 @@ for d in [CSV_DIR, PROFILE_DIR, DATASET_CARD_DIR, COLUMN_INDEX_DIR, VECTOR_INDEX
 LLM_PROVIDER = "openai"
 LLM_MODEL = "gpt-4o-mini"        # "GPT" | "gemini" | "deepseek"
 LLM_TEMPERATURE = 0.1
-LLM_API_BASE = "https://goapi.gptnb.ai/v1"
-LLM_API_KEY = "sk-0mQ2NHGkJZTAmUsj2eB98477058f497fBd0aDcA74661823c"
+LLM_API_BASE = ""
+LLM_API_KEY = ""
 
 # Retrieval configuration
 DATASET_TOP_K = 3                # top-k results returned by dataset retrieval
