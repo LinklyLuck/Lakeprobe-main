@@ -10,7 +10,6 @@
   <a href="#architecture">Architecture</a> •
   <a href="#benchmark-results">Benchmarks</a> •
   <a href="#demo-scenarios">Demo Scenarios</a> •
-  <a href="#citation">Citation</a>
 </p>
 
 ---
