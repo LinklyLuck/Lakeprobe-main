@@ -1,0 +1,1490 @@
+{
+  "timestamp": "2026-03-28T12:24:31.402817",
+  "environment": {
+    "n_datasets": 67,
+    "total_rows": "~6.4M",
+    "csv_dir": "E:\\Lakeprobe-main\\data\\csv"
+  },
+  "query_benchmark": {
+    "total_queries": 25,
+    "successful": 25,
+    "errored": 0,
+    "binding_accuracy": 0.76,
+    "metric_accuracy": 0.84,
+    "dimension_accuracy": 0.92,
+    "table_selection": 0.56,
+    "table_selection_any": 0.64,
+    "hallucination_blocked": 4,
+    "queries_with_blocks": 2,
+    "interception_rate": 0.08,
+    "hallucination_block_reasons": {
+      "Pure measure column 'PTRATIO' not suitable as dimension": 3,
+      "Pure measure column 'Age' not suitable as dimension": 1
+    },
+    "avg_lakeprobe_tokens": 1510,
+    "avg_text2sql_tokens": 4872,
+    "token_saving_pct": 69.0,
+    "avg_latency_ms": 5326.7,
+    "category_breakdown": {
+      "animal": {
+        "count": 2,
+        "binding_accuracy": 0.5,
+        "table_selection": 0.0,
+        "table_any": 0.0,
+        "avg_latency_ms": 5153.4,
+        "blocked": 0
+      },
+      "ecommerce": {
+        "count": 1,
+        "binding_accuracy": 1.0,
+        "table_selection": 0.0,
+        "table_any": 0.0,
+        "avg_latency_ms": 3385.1,
+        "blocked": 0
+      },
+      "energy": {
+        "count": 2,
+        "binding_accuracy": 1.0,
+        "table_selection": 1.0,
+        "table_any": 1.0,
+        "avg_latency_ms": 4773.5,
+        "blocked": 0
+      },
+      "housing": {
+        "count": 3,
+        "binding_accuracy": 0.667,
+        "table_selection": 0.0,
+        "table_any": 0.0,
+        "avg_latency_ms": 3867.3,
+        "blocked": 3
+      },
+      "insurance": {
+        "count": 2,
+        "binding_accuracy": 1.0,
+        "table_selection": 0.0,
+        "table_any": 0.0,
+        "avg_latency_ms": 3893.4,
+        "blocked": 0
+      },
+      "iot": {
+        "count": 3,
+        "binding_accuracy": 0.667,
+        "table_selection": 0.333,
+        "table_any": 0.667,
+        "avg_latency_ms": 5203.6,
+        "blocked": 0
+      },
+      "mba": {
+        "count": 3,
+        "binding_accuracy": 0.667,
+        "table_selection": 0.667,
+        "table_any": 1.0,
+        "avg_latency_ms": 5177.0,
+        "blocked": 0
+      },
+      "medical": {
+        "count": 3,
+        "binding_accuracy": 1.0,
+        "table_selection": 1.0,
+        "table_any": 1.0,
+        "avg_latency_ms": 9441.0,
+        "blocked": 1
+      },
+      "taxi": {
+        "count": 3,
+        "binding_accuracy": 0.667,
+        "table_selection": 1.0,
+        "table_any": 1.0,
+        "avg_latency_ms": 5061.3,
+        "blocked": 0
+      },
+      "wine": {
+        "count": 3,
+        "binding_accuracy": 0.667,
+        "table_selection": 1.0,
+        "table_any": 1.0,
+        "avg_latency_ms": 5296.9,
+        "blocked": 0
+      }
+    }
+  },
+  "discovery_benchmark": {
+    "total_queries": 25,
+    "successful": 25,
+    "errored": 0,
+    "avg_dataset_precision": 0.6,
+    "avg_column_precision": 0.76,
+    "avg_coverage": 0.88,
+    "avg_schema_columns": 9.8,
+    "avg_latency_ms": 8549.9,
+    "category_breakdown": {
+      "animal": {
+        "count": 2,
+        "avg_ds_precision": 0.334,
+        "avg_col_precision": 0.5,
+        "avg_coverage": 0.5
+      },
+      "ecommerce": {
+        "count": 2,
+        "avg_ds_precision": 0.334,
+        "avg_col_precision": 1.0,
+        "avg_coverage": 0.75
+      },
+      "energy": {
+        "count": 2,
+        "avg_ds_precision": 0.834,
+        "avg_col_precision": 0.25,
+        "avg_coverage": 1.0
+      },
+      "housing": {
+        "count": 3,
+        "avg_ds_precision": 0.333,
+        "avg_col_precision": 0.722,
+        "avg_coverage": 0.5
+      },
+      "insurance": {
+        "count": 2,
+        "avg_ds_precision": 1.0,
+        "avg_col_precision": 0.834,
+        "avg_coverage": 1.0
+      },
+      "iot": {
+        "count": 3,
+        "avg_ds_precision": 0.667,
+        "avg_col_precision": 0.833,
+        "avg_coverage": 1.0
+      },
+      "mba": {
+        "count": 2,
+        "avg_ds_precision": 0.333,
+        "avg_col_precision": 1.0,
+        "avg_coverage": 1.0
+      },
+      "medical": {
+        "count": 3,
+        "avg_ds_precision": 0.889,
+        "avg_col_precision": 0.889,
+        "avg_coverage": 1.0
+      },
+      "taxi": {
+        "count": 3,
+        "avg_ds_precision": 0.444,
+        "avg_col_precision": 0.833,
+        "avg_coverage": 1.0
+      },
+      "wine": {
+        "count": 3,
+        "avg_ds_precision": 0.778,
+        "avg_col_precision": 0.667,
+        "avg_coverage": 1.0
+      }
+    }
+  },
+  "token_cost_analysis": {
+    "n_tables": 67,
+    "total_cols": 568,
+    "schema_tok": 3831,
+    "t2s_tokens": 4381,
+    "lp_tokens": 1510,
+    "saving_pct": 65.5,
+    "measurement": "real",
+    "monthly_lp": 88.33,
+    "monthly_t2s": 217.39,
+    "monthly_saving": 129.06,
+    "scaling": [
+      {
+        "tables": 1,
+        "t2s": 607,
+        "lp": 1510,
+        "saving": -148.8
+      },
+      {
+        "tables": 5,
+        "t2s": 835,
+        "lp": 1510,
+        "saving": -80.8
+      },
+      {
+        "tables": 10,
+        "t2s": 1121,
+        "lp": 1510,
+        "saving": -34.7
+      },
+      {
+        "tables": 20,
+        "t2s": 1693,
+        "lp": 1510,
+        "saving": 10.8
+      },
+      {
+        "tables": 50,
+        "t2s": 3408,
+        "lp": 1510,
+        "saving": 55.7
+      },
+      {
+        "tables": 67,
+        "t2s": 4381,
+        "lp": 1510,
+        "saving": 65.5
+      },
+      {
+        "tables": 100,
+        "t2s": 6267,
+        "lp": 1510,
+        "saving": 75.9
+      },
+      {
+        "tables": 200,
+        "t2s": 11985,
+        "lp": 1510,
+        "saving": 87.4
+      },
+      {
+        "tables": 500,
+        "t2s": 29139,
+        "lp": 1510,
+        "saving": 94.8
+      },
+      {
+        "tables": 1000,
+        "t2s": 57729,
+        "lp": 1510,
+        "saving": 97.4
+      }
+    ]
+  },
+  "query_details": [
+    {
+      "id": "Q01",
+      "cat": "wine",
+      "query": "average alcohol by quality",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "alcohol"
+      ],
+      "bd": [
+        "quality"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "wine_quality_red_327",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 8424.0,
+      "lp_tok": 1502,
+      "t2s_tok": 468
+    },
+    {
+      "id": "Q02",
+      "cat": "wine",
+      "query": "top 5 wines with highest sulphates",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "sulphates"
+      ],
+      "bd": [
+        "wine_id"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "wine_components",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 4098.2,
+      "lp_tok": 1508,
+      "t2s_tok": 518
+    },
+    {
+      "id": "Q03",
+      "cat": "wine",
+      "query": "average pH by quality level",
+      "error": null,
+      "m_ok": false,
+      "d_ok": true,
+      "binding_ok": false,
+      "bm": [
+        "volatile acidity"
+      ],
+      "bd": [
+        "quality"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "wine_quality_red_327",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 3368.4,
+      "lp_tok": 1505,
+      "t2s_tok": 468
+    },
+    {
+      "id": "Q04",
+      "cat": "housing",
+      "query": "average PRICE by CHAS",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "PRICE"
+      ],
+      "bd": [
+        "CHAS"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "boston",
+      "table_ok": false,
+      "table_any": false,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 4031.5,
+      "lp_tok": 1503,
+      "t2s_tok": 543
+    },
+    {
+      "id": "Q05",
+      "cat": "housing",
+      "query": "average RM by RAD",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "RM"
+      ],
+      "bd": [
+        "RAD"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "boston",
+      "table_ok": false,
+      "table_any": false,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 3479.7,
+      "lp_tok": 1501,
+      "t2s_tok": 542
+    },
+    {
+      "id": "Q06",
+      "cat": "housing",
+      "query": "maximum PRICE grouped by PTRATIO",
+      "error": null,
+      "m_ok": true,
+      "d_ok": false,
+      "binding_ok": false,
+      "bm": [
+        "PRICE"
+      ],
+      "bd": [
+        "RAD"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "boston",
+      "table_ok": false,
+      "table_any": false,
+      "blocked": 3,
+      "blocked_reasons": [
+        "Pure measure column 'PTRATIO' not suitable as dimension",
+        "Pure measure column 'PTRATIO' not suitable as dimension",
+        "Pure measure column 'PTRATIO' not suitable as dimension"
+      ],
+      "latency_ms": 4090.8,
+      "lp_tok": 1504,
+      "t2s_tok": 546
+    },
+    {
+      "id": "Q07",
+      "cat": "taxi",
+      "query": "average Trip_Price by Weather",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "Trip_Price"
+      ],
+      "bd": [
+        "Weather"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "taxi_trip_pricing",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 4876.3,
+      "lp_tok": 1527,
+      "t2s_tok": 563
+    },
+    {
+      "id": "Q08",
+      "cat": "taxi",
+      "query": "average Trip_Price by Traffic_Conditions",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "Trip_Price"
+      ],
+      "bd": [
+        "Traffic_Conditions"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "taxi_trip_pricing",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 5044.9,
+      "lp_tok": 1531,
+      "t2s_tok": 566
+    },
+    {
+      "id": "Q09",
+      "cat": "taxi",
+      "query": "average Trip_Duration_Minutes by Day_of_Week",
+      "error": null,
+      "m_ok": true,
+      "d_ok": false,
+      "binding_ok": false,
+      "bm": [
+        "Trip_Duration_Minutes"
+      ],
+      "bd": [
+        "Traffic_Conditions"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "taxi_trip_pricing",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 5262.7,
+      "lp_tok": 1537,
+      "t2s_tok": 567
+    },
+    {
+      "id": "Q10",
+      "cat": "medical",
+      "query": "average Treatment_Cost_USD by Cancer_Type",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "Treatment_Cost_USD"
+      ],
+      "bd": [
+        "Cancer_Type"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "cancer_medical",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 3938.1,
+      "lp_tok": 1511,
+      "t2s_tok": 595
+    },
+    {
+      "id": "Q11",
+      "cat": "medical",
+      "query": "average Target_Severity_Score by Cancer_Stage",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "Target_Severity_Score"
+      ],
+      "bd": [
+        "Cancer_Stage"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "cancer_medical",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 1,
+      "blocked_reasons": [
+        "Pure measure column 'Age' not suitable as dimension"
+      ],
+      "latency_ms": 19502.0,
+      "lp_tok": 1535,
+      "t2s_tok": 596
+    },
+    {
+      "id": "Q12",
+      "cat": "medical",
+      "query": "average Genetic_Risk by Gender",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "Genetic_Risk"
+      ],
+      "bd": [
+        "Gender"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "cancer_medical",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 4882.9,
+      "lp_tok": 1506,
+      "t2s_tok": 592
+    },
+    {
+      "id": "Q13",
+      "cat": "mba",
+      "query": "average gpa by major",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "gpa"
+      ],
+      "bd": [
+        "major"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "business_administration_345",
+      "table_ok": false,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 6018.8,
+      "lp_tok": 1503,
+      "t2s_tok": 443
+    },
+    {
+      "id": "Q14",
+      "cat": "mba",
+      "query": "average gmat by admission",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "gmat"
+      ],
+      "bd": [
+        "admission"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "MBA_admission",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 4112.1,
+      "lp_tok": 1504,
+      "t2s_tok": 460
+    },
+    {
+      "id": "Q15",
+      "cat": "mba",
+      "query": "count admission by gender",
+      "error": null,
+      "m_ok": false,
+      "d_ok": true,
+      "binding_ok": false,
+      "bm": [
+        "gpa"
+      ],
+      "bd": [
+        "gender"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "MBA_admission",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 5400.1,
+      "lp_tok": 1524,
+      "t2s_tok": 460
+    },
+    {
+      "id": "Q16",
+      "cat": "insurance",
+      "query": "average charges by smoker",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "charges"
+      ],
+      "bd": [
+        "smoker"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "coverage_data_348",
+      "table_ok": false,
+      "table_any": false,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 3929.1,
+      "lp_tok": 1502,
+      "t2s_tok": 452
+    },
+    {
+      "id": "Q17",
+      "cat": "insurance",
+      "query": "average bmi by region",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "bmi"
+      ],
+      "bd": [
+        "region"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "coverage_data_237",
+      "table_ok": false,
+      "table_any": false,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 3857.7,
+      "lp_tok": 1502,
+      "t2s_tok": 439
+    },
+    {
+      "id": "Q18",
+      "cat": "iot",
+      "query": "average Temperature_C by Machine_Type",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "Temperature_C"
+      ],
+      "bd": [
+        "Machine_Type"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "IoT_factory",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 6641.1,
+      "lp_tok": 1505,
+      "t2s_tok": 568
+    },
+    {
+      "id": "Q19",
+      "cat": "iot",
+      "query": "average Vibration_mms by Machine_Type",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "Vibration_mms"
+      ],
+      "bd": [
+        "Machine_Type"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "industrial_sensor_simulation_5867",
+      "table_ok": false,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 6551.9,
+      "lp_tok": 1509,
+      "t2s_tok": 628
+    },
+    {
+      "id": "Q20",
+      "cat": "iot",
+      "query": "maximum Power_Consumption_kW",
+      "error": null,
+      "m_ok": false,
+      "d_ok": true,
+      "binding_ok": false,
+      "bm": [
+        "Energy Consumption"
+      ],
+      "bd": [],
+      "bt": [],
+      "bf": [],
+      "ds": "train_power_data_837",
+      "table_ok": false,
+      "table_any": false,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 2417.7,
+      "lp_tok": 1504,
+      "t2s_tok": 470
+    },
+    {
+      "id": "Q21",
+      "cat": "energy",
+      "query": "average Energy Consumption by Building Type",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "Energy Consumption"
+      ],
+      "bd": [
+        "Building Type"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "train_energy_data",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 4968.5,
+      "lp_tok": 1505,
+      "t2s_tok": 506
+    },
+    {
+      "id": "Q22",
+      "cat": "energy",
+      "query": "average Square Footage by Day of Week",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "Square Footage"
+      ],
+      "bd": [
+        "Day of Week"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "train_energy_data",
+      "table_ok": true,
+      "table_any": true,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 4578.5,
+      "lp_tok": 1509,
+      "t2s_tok": 505
+    },
+    {
+      "id": "Q23",
+      "cat": "animal",
+      "query": "average Weight by Breed",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "Weight"
+      ],
+      "bd": [
+        "Breed"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "cat_breed",
+      "table_ok": false,
+      "table_any": false,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 5926.6,
+      "lp_tok": 1501,
+      "t2s_tok": 651
+    },
+    {
+      "id": "Q24",
+      "cat": "animal",
+      "query": "average Sleep_time_hours by Country",
+      "error": null,
+      "m_ok": false,
+      "d_ok": true,
+      "binding_ok": false,
+      "bm": [
+        "Weight"
+      ],
+      "bd": [
+        "Country"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "cat_breed",
+      "table_ok": false,
+      "table_any": false,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 4380.2,
+      "lp_tok": 1505,
+      "t2s_tok": 654
+    },
+    {
+      "id": "Q25",
+      "cat": "ecommerce",
+      "query": "average price by seller_id",
+      "error": null,
+      "m_ok": true,
+      "d_ok": true,
+      "binding_ok": true,
+      "bm": [
+        "price"
+      ],
+      "bd": [
+        "seller_id"
+      ],
+      "bt": [],
+      "bf": [],
+      "ds": "olist_order_items_dataset",
+      "table_ok": false,
+      "table_any": false,
+      "blocked": 0,
+      "blocked_reasons": [],
+      "latency_ms": 3385.1,
+      "lp_tok": 1503,
+      "t2s_tok": 612
+    }
+  ],
+  "discovery_details": [
+    {
+      "id": "D01",
+      "cat": "wine",
+      "query": "I want a wine dataset to predict quality",
+      "error": null,
+      "found": [
+        "wine_quality_red_327",
+        "wine_components",
+        "winequality_red_xxx",
+        "wine_acid_sugar",
+        "olist_products_dataset",
+        "olist_order_payments_dataset",
+        "coverage_data_237",
+        "coverage_data_348",
+        "coverage_data_384",
+        "train_power_data_837"
+      ],
+      "ds_prec": 1.0,
+      "col_prec": 1.0,
+      "coverage": 1.0,
+      "schema_domain": "wine",
+      "schema_cols": 10,
+      "latency_ms": 8656.8
+    },
+    {
+      "id": "D02",
+      "cat": "wine",
+      "query": "Find wine data with residual sugar and acidity",
+      "error": null,
+      "found": [
+        "wine_quality_red_327",
+        "wine_components",
+        "wine_acid_sugar",
+        "winequality_red_xxx",
+        "coverage_data_348",
+        "coverage_data_237",
+        "coverage_data_738",
+        "coverage_data_384",
+        "train_energy_data",
+        "train_power_data_837"
+      ],
+      "ds_prec": 0.667,
+      "col_prec": 0.5,
+      "coverage": 1.0,
+      "schema_domain": "wine",
+      "schema_cols": 10,
+      "latency_ms": 7679.1
+    },
+    {
+      "id": "D03",
+      "cat": "wine",
+      "query": "Show me wine chemistry datasets with pH and sulfur dioxide",
+      "error": null,
+      "found": [
+        "wine_components",
+        "wine_quality_red_327",
+        "wine_acid_sugar",
+        "winequality_red_xxx",
+        "olist_order_payments_dataset",
+        "coverage_data_348",
+        "coverage_data_237",
+        "coverage_data_738",
+        "coverage_data_384",
+        "train_power_data_837"
+      ],
+      "ds_prec": 0.667,
+      "col_prec": 0.5,
+      "coverage": 1.0,
+      "schema_domain": "wine",
+      "schema_cols": 11,
+      "latency_ms": 8229.7
+    },
+    {
+      "id": "D04",
+      "cat": "housing",
+      "query": "Find datasets to predict Boston housing prices",
+      "error": null,
+      "found": [
+        "boston",
+        "boston_residence_472",
+        "boston_residence_135",
+        "boston_home_243",
+        "boston_residence_247",
+        "boston_residence_421",
+        "train_energy_data",
+        "training_power_data_725",
+        "training_energy_dataset_673",
+        "training_power_data_462"
+      ],
+      "ds_prec": 1.0,
+      "col_prec": 0.667,
+      "coverage": 1.0,
+      "schema_domain": "housing",
+      "schema_cols": 13,
+      "latency_ms": 11457.7
+    },
+    {
+      "id": "D05",
+      "cat": "housing",
+      "query": "I need data about crime rate and property values",
+      "error": null,
+      "found": [
+        "coverage_data_237",
+        "coverage_data_738",
+        "train_energy_data",
+        "coverage_data_348",
+        "coverage_data_384",
+        "training_power_data_725",
+        "train_power_data_837",
+        "training_power_data_462",
+        "boston_residence_472",
+        "boston_residence_247"
+      ],
+      "ds_prec": 0.0,
+      "col_prec": 0.5,
+      "coverage": 0.0,
+      "schema_domain": "crime_property",
+      "schema_cols": 10,
+      "latency_ms": 8417.5
+    },
+    {
+      "id": "D06",
+      "cat": "housing",
+      "query": "Show me housing data with tax and age information",
+      "error": null,
+      "found": [
+        "coverage_data_237",
+        "coverage_data_738",
+        "train_energy_data",
+        "coverage_data_348",
+        "customer_information_457",
+        "customer_information_837",
+        "customer_information_874",
+        "train_power_data_837",
+        "training_power_data_725",
+        "training_power_data_462"
+      ],
+      "ds_prec": 0.0,
+      "col_prec": 1.0,
+      "coverage": 0.5,
+      "schema_domain": "housing",
+      "schema_cols": 10,
+      "latency_ms": 7115.4
+    },
+    {
+      "id": "D07",
+      "cat": "taxi",
+      "query": "Find datasets for predicting taxi trip fare",
+      "error": null,
+      "found": [
+        "taxi_trip_pricing",
+        "olist_order_payments_dataset",
+        "train_energy_data",
+        "cab_fare_cost_547",
+        "cab_fare_rates_387",
+        "cab_ride_fare_348",
+        "cab_fare_details_854",
+        "training_power_data_725",
+        "training_power_dataset_374",
+        "training_power_data_462"
+      ],
+      "ds_prec": 0.333,
+      "col_prec": 0.5,
+      "coverage": 1.0,
+      "schema_domain": "transportation",
+      "schema_cols": 10,
+      "latency_ms": 23413.3
+    },
+    {
+      "id": "D08",
+      "cat": "taxi",
+      "query": "I need cab ride data with weather and traffic conditions",
+      "error": null,
+      "found": [
+        "coverage_data_237",
+        "train_energy_data",
+        "cab_ride_cost_879",
+        "cab_fare_cost_547",
+        "cab_ride_fare_348",
+        "cab_fare_rates_387",
+        "cab_fare_details_854",
+        "train_power_data_837",
+        "training_power_data_725",
+        "training_power_data_462"
+      ],
+      "ds_prec": 0.333,
+      "col_prec": 1.0,
+      "coverage": 1.0,
+      "schema_domain": "transportation",
+      "schema_cols": 11,
+      "latency_ms": 12636.2
+    },
+    {
+      "id": "D09",
+      "cat": "taxi",
+      "query": "Show me trip pricing data with base fare and per km rate",
+      "error": null,
+      "found": [
+        "taxi_trip_pricing",
+        "cab_ride_fare_348",
+        "cab_fare_cost_547",
+        "cab_fare_details_854",
+        "cab_fare_rates_387",
+        "coverage_data_237",
+        "train_energy_data",
+        "training_power_data_725",
+        "train_power_data_837",
+        "training_power_data_462"
+      ],
+      "ds_prec": 0.667,
+      "col_prec": 1.0,
+      "coverage": 1.0,
+      "schema_domain": "transportation",
+      "schema_cols": 11,
+      "latency_ms": 8815.3
+    },
+    {
+      "id": "D10",
+      "cat": "medical",
+      "query": "Find cancer patient data with treatment cost and severity",
+      "error": null,
+      "found": [
+        "cancer_medical",
+        "worldwide_cancer_cases_2015_2024_437",
+        "census_cancer_individuals",
+        "worldwide_cancer_cases_2015_2024_678",
+        "worldwide_cancer_cases_2015_2024_789",
+        "coverage_data_237",
+        "coverage_data_738",
+        "worldwide_cancer_cases_2015_2024_427",
+        "coverage_data_348",
+        "coverage_data_384"
+      ],
+      "ds_prec": 0.667,
+      "col_prec": 1.0,
+      "coverage": 1.0,
+      "schema_domain": "healthcare",
+      "schema_cols": 10,
+      "latency_ms": 7365.5
+    },
+    {
+      "id": "D11",
+      "cat": "medical",
+      "query": "I need data about cancer survival years and genetic risk",
+      "error": null,
+      "found": [
+        "cancer_medical",
+        "worldwide_cancer_cases_2015_2024_789",
+        "worldwide_cancer_cases_2015_2024_437",
+        "worldwide_cancer_cases_2015_2024_678",
+        "census_cancer_individuals",
+        "worldwide_cancer_cases_2015_2024_427",
+        "coverage_data_237",
+        "coverage_data_738",
+        "coverage_data_348",
+        "coverage_data_384"
+      ],
+      "ds_prec": 1.0,
+      "col_prec": 1.0,
+      "coverage": 1.0,
+      "schema_domain": "healthcare",
+      "schema_cols": 10,
+      "latency_ms": 10029.9
+    },
+    {
+      "id": "D12",
+      "cat": "medical",
+      "query": "Show me datasets with cancer stage, smoking, and obesity data",
+      "error": null,
+      "found": [
+        "cancer_medical",
+        "worldwide_cancer_cases_2015_2024_678",
+        "worldwide_cancer_cases_2015_2024_437",
+        "census_cancer_individuals",
+        "coverage_data_237",
+        "coverage_data_738",
+        "worldwide_cancer_cases_2015_2024_789",
+        "worldwide_cancer_cases_2015_2024_427",
+        "coverage_data_348",
+        "coverage_data_384"
+      ],
+      "ds_prec": 1.0,
+      "col_prec": 0.667,
+      "coverage": 1.0,
+      "schema_domain": "healthcare",
+      "schema_cols": 10,
+      "latency_ms": 8377.9
+    },
+    {
+      "id": "D13",
+      "cat": "mba",
+      "query": "Find MBA admission data with GPA and GMAT scores",
+      "error": null,
+      "found": [
+        "MBA_admission",
+        "coverage_data_237",
+        "coverage_data_738",
+        "MBA_students_profile",
+        "coverage_data_348",
+        "coverage_data_384",
+        "training_power_data_725",
+        "training_power_data_462",
+        "customer_information_417",
+        "business_administration_876"
+      ],
+      "ds_prec": 0.333,
+      "col_prec": 1.0,
+      "coverage": 1.0,
+      "schema_domain": "education",
+      "schema_cols": 10,
+      "latency_ms": 8220.5
+    },
+    {
+      "id": "D14",
+      "cat": "mba",
+      "query": "I need student profile data with work experience and industry",
+      "error": null,
+      "found": [
+        "coverage_data_237",
+        "coverage_data_738",
+        "MBA_students_profile",
+        "training_power_data_725",
+        "train_energy_data",
+        "train_power_data_837",
+        "coverage_data_348",
+        "coverage_data_384",
+        "training_power_data_462",
+        "business_administration_876"
+      ],
+      "ds_prec": 0.333,
+      "col_prec": 1.0,
+      "coverage": 1.0,
+      "schema_domain": "education",
+      "schema_cols": 10,
+      "latency_ms": 5493.3
+    },
+    {
+      "id": "D15",
+      "cat": "insurance",
+      "query": "Find insurance data to predict medical charges",
+      "error": null,
+      "found": [
+        "insurance",
+        "coverage_data_348",
+        "coverage_data_237",
+        "coverage_data_384",
+        "coverage_data_738",
+        "cancer_medical",
+        "train_energy_data",
+        "training_power_data_725",
+        "train_power_data_837",
+        "training_power_data_462"
+      ],
+      "ds_prec": 1.0,
+      "col_prec": 1.0,
+      "coverage": 1.0,
+      "schema_domain": "insurance",
+      "schema_cols": 8,
+      "latency_ms": 6797.3
+    },
+    {
+      "id": "D16",
+      "cat": "insurance",
+      "query": "I need coverage data with age and region information",
+      "error": null,
+      "found": [
+        "insurance",
+        "coverage_details_945",
+        "coverage_data_237",
+        "coverage_data_738",
+        "coverage_data_384",
+        "coverage_data_348",
+        "customer_information_457",
+        "customer_information_874",
+        "customer_information_837",
+        "customer_information_417"
+      ],
+      "ds_prec": 1.0,
+      "col_prec": 0.667,
+      "coverage": 1.0,
+      "schema_domain": "insurance",
+      "schema_cols": 10,
+      "latency_ms": 5521.0
+    },
+    {
+      "id": "D17",
+      "cat": "iot",
+      "query": "Find machine sensor data with temperature and vibration",
+      "error": null,
+      "found": [
+        "manufacturing_detector_emulator_1789",
+        "manufacturing_monitor_simulation_2040_xxx",
+        "manufacturing_detector_emulator_1234",
+        "manufacturing_monitor_emulator_2040_xyz",
+        "industrial_sensor_simulation_5867",
+        "manufacturing_detector_emulator_2040_xxx",
+        "train_energy_data",
+        "factory_sensor_emulator_2563",
+        "train_power_data_837",
+        "training_power_data_462"
+      ],
+      "ds_prec": 0.667,
+      "col_prec": 1.0,
+      "coverage": 1.0,
+      "schema_domain": "manufacturing",
+      "schema_cols": 8,
+      "latency_ms": 5324.1
+    },
+    {
+      "id": "D18",
+      "cat": "iot",
+      "query": "I need IoT data to predict machine failure",
+      "error": null,
+      "found": [
+        "IoT_factory",
+        "IoT_stors_indexes",
+        "train_energy_data",
+        "coverage_data_237",
+        "coverage_data_738",
+        "coverage_data_348",
+        "coverage_data_384",
+        "train_power_data_837",
+        "training_power_data_462",
+        "training_power_data_725"
+      ],
+      "ds_prec": 0.333,
+      "col_prec": 0.5,
+      "coverage": 1.0,
+      "schema_domain": "IoT",
+      "schema_cols": 9,
+      "latency_ms": 6952.2
+    },
+    {
+      "id": "D19",
+      "cat": "iot",
+      "query": "Show me manufacturing data with hydraulic pressure and coolant flow",
+      "error": null,
+      "found": [
+        "manufacturing_detector_emulator_1789",
+        "manufacturing_detector_emulator_1234",
+        "manufacturing_monitor_simulation_2040_xxx",
+        "manufacturing_detector_simulation_5678",
+        "manufacturing_monitor_emulator_2040_xyz",
+        "manufacturing_detector_emulator_2040_xxx",
+        "train_energy_data",
+        "train_power_data_837",
+        "training_power_data_725",
+        "training_power_data_462"
+      ],
+      "ds_prec": 1.0,
+      "col_prec": 1.0,
+      "coverage": 1.0,
+      "schema_domain": "manufacturing",
+      "schema_cols": 10,
+      "latency_ms": 10156.3
+    },
+    {
+      "id": "D20",
+      "cat": "energy",
+      "query": "Find energy consumption data by building type",
+      "error": null,
+      "found": [
+        "train_energy_data",
+        "training_power_data_725",
+        "train_power_data_837",
+        "training_energy_dataset_673",
+        "training_power_data_462",
+        "training_power_dataset_374",
+        "coverage_data_237",
+        "coverage_data_738",
+        "coverage_data_348",
+        "coverage_data_384"
+      ],
+      "ds_prec": 0.667,
+      "col_prec": 0.0,
+      "coverage": 1.0,
+      "schema_domain": "energy",
+      "schema_cols": 10,
+      "latency_ms": 7702.1
+    },
+    {
+      "id": "D21",
+      "cat": "energy",
+      "query": "I need power usage data with temperature and occupants",
+      "error": null,
+      "found": [
+        "train_energy_data",
+        "training_power_dataset_374",
+        "training_power_data_725",
+        "training_power_data_462",
+        "train_power_data_837",
+        "training_energy_dataset_673",
+        "coverage_data_237",
+        "coverage_data_738",
+        "coverage_data_348",
+        "coverage_data_384"
+      ],
+      "ds_prec": 1.0,
+      "col_prec": 0.5,
+      "coverage": 1.0,
+      "schema_domain": "energy",
+      "schema_cols": 10,
+      "latency_ms": 8727.8
+    },
+    {
+      "id": "D22",
+      "cat": "animal",
+      "query": "Find cat breed data with weight and body length",
+      "error": null,
+      "found": [
+        "cat_breed_details_245",
+        "cat_breed",
+        "coverage_data_237",
+        "coverage_data_738",
+        "coverage_data_348",
+        "coverage_data_384",
+        "training_power_data_725",
+        "train_energy_data",
+        "train_power_data_837",
+        "training_power_data_462"
+      ],
+      "ds_prec": 0.667,
+      "col_prec": 1.0,
+      "coverage": 1.0,
+      "schema_domain": "cats",
+      "schema_cols": 8,
+      "latency_ms": 8731.6
+    },
+    {
+      "id": "D23",
+      "cat": "animal",
+      "query": "I need pet data with fur colour and eye colour",
+      "error": null,
+      "found": [
+        "coverage_data_237",
+        "coverage_data_738",
+        "train_power_data_837",
+        "coverage_data_348",
+        "coverage_data_384",
+        "training_power_data_462",
+        "cat_breed_details_245",
+        "cat_breed",
+        "feline_variety_123",
+        "customer_information_837"
+      ],
+      "ds_prec": 0.0,
+      "col_prec": 0.0,
+      "coverage": 0.0,
+      "schema_domain": "pets",
+      "schema_cols": 8,
+      "latency_ms": 4662.4
+    },
+    {
+      "id": "D24",
+      "cat": "ecommerce",
+      "query": "Find e-commerce order data with price and freight value",
+      "error": null,
+      "found": [
+        "olist_order_items_dataset",
+        "olist_order_payments_dataset",
+        "olist_order_reviews_dataset",
+        "train_energy_data",
+        "coverage_data_738",
+        "coverage_data_237",
+        "training_power_data_725",
+        "training_power_data_462",
+        "train_power_data_837",
+        "olist_orders_dataset"
+      ],
+      "ds_prec": 0.667,
+      "col_prec": 1.0,
+      "coverage": 1.0,
+      "schema_domain": "e-commerce",
+      "schema_cols": 10,
+      "latency_ms": 4979.2
+    },
+    {
+      "id": "D25",
+      "cat": "ecommerce",
+      "query": "I need product data with category names and dimensions",
+      "error": null,
+      "found": [
+        "cat_breed",
+        "train_energy_data",
+        "coverage_data_348",
+        "coverage_data_237",
+        "coverage_data_384",
+        "training_power_data_725",
+        "train_power_data_837",
+        "training_power_data_462",
+        "product_category_name_translation",
+        "olist_products_dataset"
+      ],
+      "ds_prec": 0.0,
+      "col_prec": 1.0,
+      "coverage": 0.5,
+      "schema_domain": "ecommerce",
+      "schema_cols": 9,
+      "latency_ms": 8285.0
+    }
+  ]
+}

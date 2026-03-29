@@ -10,7 +10,6 @@ env/
 
 data/
 bird_data/
-benchmarks/results/
 *.csv
 *.jsonl
 *.npz
