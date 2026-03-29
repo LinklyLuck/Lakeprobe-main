@@ -81,7 +81,7 @@ MAX_RESULT_ROWS = 500
 DOMAIN_ROUTING_MODE = "auto"
 DOMAIN_BOOST_WEIGHT = 0.3        # added score weight for dataset ranking when domain matches
 
-# ── Alias 词典（fallback for offline scenarios when KB/LLM unavailable） ──
+# ── Alias（fallback for offline scenarios when KB/LLM unavailable） ──
 ALIAS_LEXICON: dict[str, list[str]] = {
     "revenue": ["sales", "income", "earnings", "turnover"],
     "sales": ["revenue", "income", "turnover"],
