@@ -9,7 +9,8 @@
   <a href="#quick-start">Quick Start</a> •
   <a href="#architecture">Architecture</a> •
   <a href="#benchmark-results">Benchmarks</a> •
-  <a href="#demo-scenarios">Demo Scenarios</a> 
+  <a href="#demo-scenarios">Demo Scenarios</a> •
+  <a href="#citation">Citation</a>
 </p>
 
 ---
@@ -405,6 +406,20 @@ Lakeprobe-main/
 
 **Total: 17 modules, 8,338 lines of code**
 
+---
+
+@inproceedings{lakeprobe2026,
+  title     = {LakeProbe: Evidence-Based Natural Language Query Engine for Schema-Less Data Lakes},
+  booktitle = {Proceedings of the VLDB Endowment (Demo Track)},
+  year      = {2026},
+  author    = {Li, Kaiyu and An, Jia and Sun, Qi}
+}
+
+---
+
+## Authors
+
+Kaiyu Li · Jia An · Qi Sun
 ---
 
 ## License
