@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.png" alt="LakeProbe Logo" width="180">
+  <img src="images\logo.png" alt="LakeProbe Logo" width="180">
 </p>
 
 <h1 align="center">LakeProbe</h1>
