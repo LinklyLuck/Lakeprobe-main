@@ -1,10 +1,9 @@
 """
-LakeProbe — Main Entry Point
-
-Supports two running modes:
+LakeProbe — Main Entry
+Functions:
+Two run modes:
   1. FastAPI REST API  (uvicorn app.main:api)
   2. Streamlit Demo UI (streamlit run app/main.py)
-
   Query → parse_intent → retrieve_candidates → fuse_and_plan
         → optimize_plan (Lazy) → [user review/edit] → execute → audit
 """
@@ -41,11 +40,11 @@ from core.plan_optimizer import (
 from config import CSV_DIR
 
 
-# Initialization: Profile all CSVs → DatasetCard → ColumnIndex
+# Initialize: Profile all CSVs → DatasetCard → ColumnIndex
 MAX_CSV_SIZE = 500 * 1024 * 1024
 
 def initialize_data(csv_dir: str | Path | None = None):
-    """Scan the CSV directory and build ProfileCard / DatasetCard / ColumnIndex."""
+    """Scan CSV directory, build ProfileCard / DatasetCard / ColumnIndex."""
     d = Path(csv_dir) if csv_dir else CSV_DIR
     if not d.exists():
         print(f"[WARN] CSV directory not found: {d}")
@@ -109,7 +108,6 @@ def discovery_pipeline(raw_query: str) -> dict:
       1. LLM generates "Desired Schema" from user query
       2. IR matches desired columns against all indexed datasets
       3. Returns ranked datasets with column-level match evidence
-
     Returns: {mode, query, desired_schema, matched_datasets, token_usage}
     """
     from core.schema_generator import generate_desired_schema, match_schema_to_datasets
@@ -173,7 +171,7 @@ def discovery_pipeline(raw_query: str) -> dict:
     }
 
 
-# Core Query Pipeline (with Lazy Execution)
+# Core query pipeline (with Lazy Execution)
 def parse_intent_only(raw_query: str) -> dict:
     """
     Phase 1: Parse intent ONLY — for user review before proceeding.
@@ -263,14 +261,14 @@ def _generate_intent_choices(intent) -> dict:
 
     # Ambiguity-specific choices
     q = intent.raw_query.lower()
-    if any(k in q for k in ["best", "最好", "最优", "top"]) and not intent.metric_hints:
+    if any(k in q for k in ["best", "best_cn", "optimal_cn", "top"]) and not intent.metric_hints:
         choices["best_ambiguous"] = {
             "question": '"Best" by which measure?',
             "options": sorted(available_measures)[:6] if available_measures else ["sales", "profit", "quantity"],
             "allow_custom": True,
         }
 
-    if any(k in q for k in ["recent", "最近", "lately"]) and not intent.time_hints:
+    if any(k in q for k in ["recent", "recent_cn", "lately"]) and not intent.time_hints:
         choices["recent_ambiguous"] = {
             "question": '"Recent" means what time range?',
             "options": ["last 7 days", "last 30 days", "last quarter", "last year"],
@@ -386,10 +384,10 @@ def query_pipeline(raw_query: str, auto_execute: bool = True) -> dict:
     """
     End-to-end query processing (Lazy Execution aware).
 
-    auto_execute=True  → traditional mode, execute immediately
-    auto_execute=False → Lazy mode, return the plan without execution, waiting for user confirmation
+    auto_execute=True  -> traditional mode, execute directly
+    auto_execute=False -> lazy mode, return plan without executing, wait for user confirmation
     """
-    # ── Token tracking 开始 ──
+    # ── Token tracking start ──
     token_usage = start_token_tracking()
 
     # Step 1: Parse Intent
@@ -470,6 +468,7 @@ def query_pipeline(raw_query: str, auto_execute: bool = True) -> dict:
 
 
 def execute_edited_plan(plan_dict: dict) -> dict:
+    """Execute user-edited plan."""
     plan = ExecutablePlan(**plan_dict)
     return execute_plan(plan)
 
@@ -521,7 +520,7 @@ def create_api():
 
     @api.post("/edit_plan")
     async def edit_plan(req: dict):
-        """Edit one step in the plan (Lazy Execution interaction)."""
+        """Edit a plan step (Lazy Execution interaction)."""
         plan = ExecutablePlan(**req["plan"])
         edited = edit_plan_step(
             plan, step_index=req.get("step_index", 0),
@@ -578,19 +577,89 @@ api = create_api()
 def run_streamlit():
     import streamlit as st
 
-    st.set_page_config(page_title="LakeProbe", page_icon="🔍", layout="wide")
-    st.markdown("#### LakeProbe — Evidence-Based NL → CSV Query Engine")
-    st.caption("Lazy Execution · Evidence-Grounded Binding · Human-in-the-Loop")
+    st.set_page_config(page_title="LakeProbe", page_icon="logo.png", layout="wide")
+
+    # ── Global CSS (applies to ALL modes) ──
+    st.markdown("""
+    <style>
+    .block-container {
+        padding-top: 0.8rem; padding-bottom: 0.5rem;
+        padding-left: 1rem; padding-right: 1rem;
+        max-width: 100%;
+    }
+    /* All caption text — forced black */
+    [data-testid="stCaptionContainer"],
+    [data-testid="stCaptionContainer"] p,
+    [data-testid="stCaptionContainer"] span,
+    [data-testid="stCaptionContainer"] code,
+    [data-testid="stCaptionContainer"] strong,
+    [data-testid="stCaptionContainer"] em,
+    .st-emotion-cache-nahz7x,
+    .st-emotion-cache-nahz7x p {
+        font-size: 1rem !important;
+        color: #000000 !important;
+        opacity: 1 !important;
+        line-height: 1.55 !important;
+    }
+    /* Metric cards */
+    [data-testid="stMetric"] {
+        background: #f9fafb; border: 1px solid #e5e7eb;
+        border-radius: 6px; padding: 10px 14px;
+    }
+    [data-testid="stMetricValue"] { font-size: 1.4rem !important; font-weight: 700 !important; color: #111827 !important; }
+    [data-testid="stMetricLabel"] { font-size: 0.85rem !important; color: #6b7280 !important; text-transform: uppercase; }
+    /* Buttons */
+    .stButton > button[kind="primary"] {
+        background-color: #1a56db !important; border: none !important;
+        font-weight: 600 !important; font-size: 1rem !important; border-radius: 6px !important;
+    }
+    /* Expander / DataFrame / Dividers */
+    [data-testid="stExpander"] { border: 1px solid #e5e7eb !important; border-radius: 6px !important; }
+    [data-testid="stDataFrame"] { border: 1px solid #e5e7eb; border-radius: 6px; }
+    hr { border-color: #e5e7eb !important; margin: 8px 0 !important; }
+    .stAlert { padding: 8px 12px !important; font-size: 0.95rem !important; }
+    /* Sidebar */
+    [data-testid="stSidebar"] { background: #f9fafb !important; border-right: 1px solid #e5e7eb !important; }
+    /* Text input — larger font + placeholder */
+    [data-testid="stTextInput"] input {
+        font-size: 1.2rem !important;
+        padding: 12px 16px !important;
+    }
+    [data-testid="stTextInput"] input::placeholder {
+        font-size: 1.1rem !important;
+    }
+    /* Column dividers */
+    [data-testid="stHorizontalBlock"] > div:not(:last-child) {
+        border-right: 1px solid #e5e7eb; padding-right: 16px !important;
+    }
+    [data-testid="stHorizontalBlock"] > div:not(:first-child) { padding-left: 16px !important; }
+    </style>
+    """, unsafe_allow_html=True)
+
+    # Logo + Title
+    import base64
+    logo_path = Path(__file__).parent / "logo.png"
+    if logo_path.exists():
+        logo_b64 = base64.b64encode(logo_path.read_bytes()).decode()
+        st.markdown(
+            f'<div style="display:flex;align-items:center;gap:0px;margin-bottom:0px;margin-top:15px;">'
+            f'<img src="data:image/png;base64,{logo_b64}" style="height:40px;">'
+            f'<h1 style="margin:0;">LakeProbe</h1>'
+            f'</div>',
+            unsafe_allow_html=True
+        )
+    else:
+        st.markdown('<h1 style="margin-bottom:0;">LakeProbe</h1>', unsafe_allow_html=True)
 
     # ── Sidebar ──
     with st.sidebar:
-        st.header("⚙️ Configuration")
+        st.header("Configuration")
 
         csv_root = Path(CSV_DIR)
         subfolders = sorted([f.name for f in csv_root.iterdir() if f.is_dir()])
 
         if subfolders:
-            selected = st.selectbox("📁 Dataset folder", subfolders)
+            selected = st.selectbox("Dataset folder", subfolders)
             csv_dir = str(csv_root / selected)
         else:
             csv_dir = st.text_input("CSV Directory", value=str(CSV_DIR))
@@ -598,13 +667,13 @@ def run_streamlit():
         csv_count = len(list(Path(csv_dir).glob("**/*.csv")))
         st.caption(f"Found {csv_count} CSV files")
 
-        if st.button("🔄 Index entire folder"):
+        if st.button("Index entire folder"):
             with st.spinner(f"Profiling {csv_count} CSVs..."):
                 cards = initialize_data(csv_dir)
                 st.success(f"Indexed {len(cards)} datasets")
 
         st.divider()
-        st.header("📊 Indexed Datasets")
+        st.header("Indexed Datasets")
         ds_cards = load_all_dataset_cards()
         if ds_cards:
             st.success(f"{len(ds_cards)} datasets indexed")
@@ -612,19 +681,35 @@ def run_streamlit():
             st.info("No datasets indexed yet. Select a folder and click Index.")
 
         st.divider()
-        if st.button("🔄 New Query", use_container_width=True, type="primary"):
+        if st.button("New Query", use_container_width=True, type="primary"):
             for key in list(st.session_state.keys()):
                 if key not in ("csv_dir_input",):
                     del st.session_state[key]
             st.rerun()
 
-    # ── Main area: Query ──
-    query = st.text_input("Ask a question about your data:",
-                          placeholder="e.g., 'I want wine dataset to predict quality' or 'top 5 categories by profit'")
+        # Mode indicator (reads from previous run's session state)
+        current_mode = st.session_state.get("_mode", "—")
+        st.divider()
+        st.markdown(f"**Pipeline Mode:** {current_mode}")
 
+    # ── Main area: Query ──
+    st.markdown('<p style="font-size:1.3rem;font-weight:600;margin-bottom:4px;">Ask a question about your data:</p>', unsafe_allow_html=True)
+    query = st.text_input("query_input",
+                          placeholder="e.g., 'I want wine dataset to predict quality' or 'average Weight by Breed'",
+                          label_visibility="collapsed")
+    search_clicked = st.button("Search", type="primary", use_container_width=True)
+
+    # Detect mode early so sidebar can display it
     if query:
+        _is_disc = _is_discovery_query(query)
+        st.session_state["_mode"] = "Discovery" if _is_disc else "Analytical"
+
+    if query and search_clicked or (query and st.session_state.get("_q") == query) or (query and st.session_state.get("_query_mode") in ("intent_review", "running", "query")):
         # ── Route: Discovery vs Query ──
         is_discovery = _is_discovery_query(query)
+
+        # Store mode for sidebar
+        st.session_state["_mode"] = "Discovery" if is_discovery else "Analytical"
 
         if is_discovery:
             # DISCOVERY MODE — Compact 3-column layout
@@ -648,7 +733,7 @@ def run_streamlit():
                         f'border-bottom:2.5px solid #1a56db;padding-bottom:5px;margin-bottom:10px;">{t}</div>',
                         unsafe_allow_html=True)
 
-                    card_title("🧠 Schema Understanding")
+                    card_title("Schema Understanding")
                     st.caption(f"**Domain:** {schema.get('domain', '?')} · "
                                f"**Task:** {schema.get('task_type', '?')}")
                     st.caption(f"**Target:** {schema.get('target_description', '?')}")
@@ -658,7 +743,7 @@ def run_streamlit():
                             st.caption(f"· `{c['name']}` ({c.get('role', '')}, {c.get('expected_dtype', '')})")
                     st.markdown("---")
 
-                    card_title("💰 Token Cost")
+                    card_title("Token Cost")
                     lp_tok = td.get("lakeprobe_total_tokens", 0)
                     t2s_tok = td.get("text2sql_total_tokens", 0)
                     if lp_tok > 0:
@@ -668,7 +753,7 @@ def run_streamlit():
 
                 # ─── CENTER: Top dataset details + Download ───
                 with dc_center:
-                    card_title("📊 Top Match")
+                    card_title("Top Match")
                     top = matched[0]
                     st.caption(f"**{top['dataset_id']}** · {top['row_count']} rows · "
                                f"coverage: {top.get('coverage', 0):.0%} · score: {top.get('score', 0):.2f}")
@@ -694,7 +779,7 @@ def run_streamlit():
                             dl_df = pd.read_csv(csv_path[0], nrows=5000)
                             csv_data = dl_df.to_csv(index=False)
                             st.download_button(
-                                "⬇ Download dataset (CSV)",
+                                "Download dataset (CSV)",
                                 data=csv_data,
                                 file_name=f"{top['dataset_id']}.csv",
                                 mime="text/csv",
@@ -705,11 +790,12 @@ def run_streamlit():
 
                 # ─── RIGHT: Other matches (ranked list) ───
                 with dc_right:
-                    card_title(f"🔎 All Matches ({len(matched)})")
+                    card_title(f"All Matches ({len(matched)})")
                     for idx, ds in enumerate(matched[:8]):
                         score = ds.get("score", 0)
                         cov = ds.get("coverage", 0)
-                        bar = "█" * int(min(score, 5) * 2) + "░" * (10 - int(min(score, 5) * 2))
+                        filled = int(cov * 10)
+                        bar = "█" * filled + "░" * (10 - filled)
                         is_top = " ←" if idx == 0 else ""
                         st.caption(f"**{idx+1}.** `{ds['dataset_id'][:25]}` "
                                    f"({ds['row_count']} rows) {cov:.0%} {bar}{is_top}")
@@ -749,8 +835,8 @@ def run_streamlit():
 
             # ── Phase 1 UI: Intent Review ──
             if mode == "intent_review":
-                st.subheader("🧠 Phase 1: Review LLM Intent (before retrieval)")
-                st.caption("⚠️ This is where hallucinations originate. Review and correct before proceeding.")
+                st.subheader("Phase 1: Review LLM Intent (before retrieval)")
+                st.caption("This is where hallucinations originate. Review and correct before proceeding.")
 
                 # Row 1: Intent type + Agg + Sort + Limit
                 c1, c2, c3, c4 = st.columns(4)
@@ -794,7 +880,7 @@ def run_streamlit():
                     intent_data["time_hints"] = [t.strip() for t in edited_time.split(",") if t.strip()]
 
                 # Confirm button
-                if st.button("✅ Confirm intent → Run retrieval & planning", type="primary"):
+                if st.button("Confirm intent → Run retrieval & planning", type="primary"):
                     st.session_state["_confirmed_intent"] = intent_data
                     st.session_state["_query_mode"] = "running"
                     st.rerun()
@@ -966,8 +1052,8 @@ def run_streamlit():
                 st.session_state["last_query"] = query
                 st.session_state.pop("last_result", None)
             edited_steps = st.session_state["edited_plan"].get("steps", [])
-            icons = {"scan": "📂", "filter": "🔍", "derive_time": "🕐", "groupby": "📊",
-                     "aggregate": "➕", "sort": "↕️", "limit": "✂️", "select": "📋", "join": "🔗"}
+            icons = {"scan": "▸", "filter": "▸", "derive_time": "▸", "groupby": "▸",
+                     "aggregate": "▸", "sort": "▸", "limit": "▸", "select": "▸", "join": "▸"}
             all_ds = load_all_dataset_cards()
             ds_names = [dc.dataset_id for dc in all_ds]
 
@@ -1008,7 +1094,7 @@ def run_streamlit():
                             except ValueError:
                                 params["value"] = new_val
                     with fc4:
-                        if st.button("✕", key=f"rm_{i}_{query}"):
+                        if st.button("X", key=f"rm_{i}_{query}"):
                             edited_steps.pop(i)
                             st.session_state["edited_plan"]["steps"] = edited_steps
                             st.rerun()
@@ -1051,10 +1137,10 @@ def run_streamlit():
                 st.session_state["last_result"] = exec_result
                 st.rerun()
 
-        #COL 4: Token Cost + Result
+        # COL 4: Token Cost + Result
 
         with col_retrieval:
-            card_title("🔎 Retrieval")
+            card_title("Retrieval")
             ds_cands = candidates.get("dataset_candidates", [])
             st.caption(f"Datasets: {', '.join(ds_cands[:3])}")
             for ctype, clabel in [("metric_candidates", "Metric"), ("dimension_candidates", "Dim"), ("time_candidates", "Time")]:
@@ -1064,13 +1150,13 @@ def run_streamlit():
                     st.caption(f"**{clabel}:** {items}")
             st.markdown("---")
 
-            card_title("🛡️ Hallucination Guard")
+            card_title("Hallucination Guard")
             st.caption(f"**{len(blocked_list)}** candidates blocked")
             for bl in blocked_list[:5]:
                 st.caption(f"· `{bl.get('column', '')}` — {bl.get('reason', '')[:40]}")
             st.markdown("---")
 
-            card_title("📝 Audit")
+            card_title("Audit")
             audit_result = st.session_state.get("last_result")
             if audit_result:
                 try:
@@ -1083,8 +1169,11 @@ def run_streamlit():
                         binding=bind_obj, plan=plan_obj, execution_result=audit_result,
                     )
                     audit_d = format_audit_for_display(record)
-                    st.caption(f"ID: {audit_d.get('query_id', '?')}")
-                    st.caption(f"Dataset: {audit_d.get('dataset', '?')}")
+                    st.caption(f"Query: {audit_d.get('query', '?')}")
+                    ds_name = audit_d.get('section_3_final_binding', {}).get('dataset', '?')
+                    st.caption(f"Dataset: {ds_name}")
+                    row_count = audit_d.get('execution', {}).get('row_count', '?')
+                    st.caption(f"Rows: {row_count}")
                     with st.expander("Full JSON"):
                         st.json(audit_d)
                 except Exception as e:
@@ -1109,21 +1198,21 @@ def run_streamlit():
                 st.caption(f"Domain: **{dr['predicted_domain']}** ({dr.get('confidence', 0):.0%})")
             st.markdown("---")
 
-            card_title("🔗 Binding")
+            card_title("Binding")
             blocked_list = binding.get("blocked_candidates", [])
             if blocked_list:
-                st.caption(f"🚫 {len(blocked_list)} blocked")
+                st.caption(f"{len(blocked_list)} blocked")
             for bt in ["metric_bindings", "dimension_bindings", "time_bindings", "filter_bindings"]:
                 for b in binding.get(bt, []):
                     lbl = bt.replace("_bindings", "")[:3].upper()
                     zone = b.get("zone", "accept")
-                    zicon = {"accept": "✅", "uncertain": "⚠️", "reject": "❌"}.get(zone, "·")
+                    zicon = {"accept": "[OK]", "uncertain": "[?]", "reject": "[X]"}.get(zone, "·")
                     st.caption(f"{zicon} {lbl}: `{b.get('hint', '')}` → **{b.get('column', '')}** ({b.get('score', 0):.2f})")
 
         # COL 2: Retrieval + Guard + Audit
 
         with col_right:
-            card_title("💰 Token Cost")
+            card_title("Token Cost")
             lp = td.get("lakeprobe_total_tokens", 0)
             t2s = td.get("text2sql_total_tokens", 0)
             if lp > 0:
@@ -1136,12 +1225,13 @@ def run_streamlit():
                 p1_td = st.session_state.get("_parsed_intent", {}).get("token_usage", {})
                 p1_tok = p1_td.get("lakeprobe_total_tokens", 0)
                 if p1_tok:
-                    st.caption(f"P1: {p1_tok:,} · P2: {lp - p1_tok:,}")
+                    st.caption(f"LLM: 1 call (Phase1: {p1_tok:,})")
+                    st.caption(f"Phase2: IR-only, no LLM")
             else:
                 st.caption("No token data.")
             st.markdown("---")
 
-            card_title("📋 Result")
+            card_title("Result")
             disp_result = st.session_state.get("last_result")
             if disp_result:
                 if disp_result.get("error"):
@@ -1151,12 +1241,20 @@ def run_streamlit():
                     df = pd.DataFrame(disp_result["rows"], columns=disp_result["columns"])
                     st.dataframe(df, use_container_width=True, height=200)
                     st.caption(f"{disp_result['row_count']} rows")
+                    # Download button
+                    csv_data = df.to_csv(index=False)
+                    st.download_button(
+                        "Download result (CSV)",
+                        data=csv_data,
+                        file_name="lakeprobe_result.csv",
+                        mime="text/csv",
+                        use_container_width=True,
+                    )
                 if disp_result.get("sql"):
                     with st.expander("SQL"):
                         st.code(disp_result["sql"], language="sql")
             else:
                 st.caption("Click Execute to run.")
-
 
 # CLI
 if __name__ == "__main__":
