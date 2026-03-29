@@ -128,7 +128,7 @@ _AGG_KEYWORDS = {
     "median": ["median", "中位数"],
 }
 
-# Preposition/structure words that indicate "by X" grouping
+# Preposition/structure words that indicate "by X" grouping.
 _BY_WORDS = frozenset({"by", "per", "across", "for each", "grouped by", "分", "按", "每个", "各"})
 
 # Filter operator patterns

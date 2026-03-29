@@ -851,7 +851,7 @@ def measure_text2sql_tokens(query: str, profile: Optional[ProfileCard] = None) -
 
 def measure_lakeprobe_tokens_tiktoken(system_prompt: str, query: str):
     """
-    Measure LakeProbe's LLM token cost using tiktoken (if API didn't report).
+    Measure LakeProbe's LLM token cost using tiktoken (if API didn't report)
     """
     with _token_usage_lock:
         if _current_token_usage and _current_token_usage.lakeprobe_input_tokens == 0:

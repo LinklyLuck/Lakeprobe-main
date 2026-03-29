@@ -256,7 +256,7 @@ def _build_aliases(col_name: str) -> list[str]:
         for a in ALIAS_LEXICON.get(canonical, []):
             aliases.add(a.lower())
 
-    # Parsing multi-word column names
+    # Parsing multi-word column names.
     tokens = base.replace("_", " ").replace("-", " ").split()
     for t in tokens:
         canon = ALIAS_REVERSE.get(t)

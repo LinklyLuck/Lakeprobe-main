@@ -425,7 +425,7 @@ def _find_best_column_match(
             score += 0.2
             evidence.append(f"role compatible ({entry.inferred_role.value})")
 
-        # 5. Embedding similarity (pre-loaded, no disk I/O here)
+        # 5. Embedding similarity
         if vec_data is not None and query_vec is not None:
             try:
                 col_names = list(vec_data["column_names"])

@@ -217,7 +217,7 @@ class DesiredSchema(BaseModel):
 
 
 class ColumnMatch(BaseModel):
-    """The results of matching an actual column with an ideal column."""
+    """The results of matching an actual column with an ideal column"""
     desired: str                     # List of Ideal Candidates
     actual_column: str               # Column names actually matched
     actual_dataset: str

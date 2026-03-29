@@ -558,7 +558,7 @@ for abbr, fulls in _ABBREVIATIONS.items():
 
 def expand_abbreviation(term: str) -> list[str]:
     """
-    Expand a column name abbreviation to full forms.
+    Expand a column name abbreviation to full forms
     """
     key = term.lower().strip()
 

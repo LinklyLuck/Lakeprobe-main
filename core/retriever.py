@@ -553,7 +553,7 @@ def retrieve_candidates(
     domain_prior: str = None,
 ) -> RetrievalResult:
     """
-    Main retriever entry: Hybrid Sparse-Dense Two-Stage Retrieval
+    Main retriever entry: Hybrid Sparse-Dense Two-Stage Retrieval.
 
     Stage 1: Dataset Retrieval  (sparse — lexical + alias + domain boost)
     Stage 2: Column Retrieval   (hybrid — sparse + dense fusion)

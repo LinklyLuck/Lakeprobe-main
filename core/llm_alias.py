@@ -147,7 +147,7 @@ def generate_aliases_for_dataset(
       4. ALIAS_LEXICON (hardcoded, last resort)
 
     All layers merge — WordNet provides linguistic synonyms,
-    LLM adds domain-specific terms, ALIAS_LEXICON covers gaps.
+    LLM adds domain-specific terms, ALIAS_LEXICON covers gaps
     """
     # 1. Check cache
     if not force_refresh:

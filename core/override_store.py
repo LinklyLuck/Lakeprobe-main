@@ -297,7 +297,7 @@ def create_override_from_correction(
     Called when the user corrects a binding in the UI.
 
     The correction is stored so that future similar queries
-    can automatically reuse the same mapping.
+    can automatically reuse the same mapping
     """
     return store.add_rule(
         hint=hint,

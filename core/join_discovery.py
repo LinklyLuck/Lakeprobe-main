@@ -366,7 +366,7 @@ def _find_csv(dataset_id: str) -> Optional[Path]:
 
 
 def get_join_index_stats() -> dict:
-    """Get stats about the join index."""
+    """Get stats about the join index"""
     lsh = get_lsh_index()
     datasets = set()
     for ds, col in lsh.signatures:

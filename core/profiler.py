@@ -273,7 +273,7 @@ def build_profile_card(csv_path: str, save: bool = True) -> ProfileCard:
     """
     Main profiler entry: scan CSV → ProfileCard
 
-    DuckDB is used first, with Pandas as fallback.
+    DuckDB is used first, with Pandas as fallback
     """
     try:
         card = _profile_with_duckdb(csv_path)
