@@ -577,7 +577,7 @@ api = create_api()
 def run_streamlit():
     import streamlit as st
 
-    st.set_page_config(page_title="LakeProbe", page_icon="logo.png", layout="wide")
+    st.set_page_config(page_title="LakeProbe", page_icon="images/logo.png", layout="wide")
 
     # ── Global CSS (applies to ALL modes) ──
     st.markdown("""
@@ -638,7 +638,10 @@ def run_streamlit():
 
     # Logo + Title
     import base64
-    logo_path = Path(__file__).parent / "logo.png"
+    from pathlib import Path
+
+    logo_path = Path(__file__).parent / "images" / "logo.png"
+
     if logo_path.exists():
         logo_b64 = base64.b64encode(logo_path.read_bytes()).decode()
         st.markdown(
