@@ -1,26 +1,30 @@
-# LakeProbe — Dependencies
+# Python >= 3.10 required
 
-# Core
+# ── Core Pipeline ──
 pydantic>=2.0
-duckdb>=0.9.0
-scikit-learn>=1.3.0
+numpy>=1.24
+openai>=1.0                # LLM API (GPT / DeepSeek / Gemini via OpenAI-compatible)
 
-# Knowledge base (optional — system works without via extended dict fallback)
-nltk>=3.8.0
+# ── Data Processing ──
+duckdb>=0.9                # SQL execution engine
+pandas>=2.0                # DataFrame operations (profiler fallback)
+polars>=0.19               # Fast DataFrame (executor alternative)
 
-# Token measurement
-tiktoken>=0.5.0
+# ── Embedding & Retrieval ──
+sentence-transformers>=2.2 # Local embedding model (all-MiniLM-L6-v2)
+scikit-learn>=1.3          # TF-IDF vectorizer + TruncatedSVD
 
-# API
-fastapi>=0.100.0
-uvicorn>=0.20.0
+# ── Knowledge Base ──
+nltk>=3.8                  # WordNet synonym discovery (offline)
 
-# UI (optional)
-streamlit>=1.30.0
+# ── Token Tracking ──
+tiktoken>=0.5              # OpenAI tokenizer for precise token counting
 
-# LLM (optional — system works without via fallback parser)
-openai>=1.0.0
+# ── Web UI ──
+streamlit>=1.28            # Demo interface
+fastapi>=0.100             # REST API
+uvicorn>=0.23              # ASGI server
 
-# Alternative executor (optional)
-polars>=0.20.0
-pandas>=2.0.0
+# ── Post-install ──
+# Run once after install:
+#   python -c "import nltk; nltk.download('wordnet'); nltk.download('omw-1.4')"
