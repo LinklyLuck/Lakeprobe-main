@@ -1,1 +1,1 @@
-# LakeProbe app package
+# LakeProbe core package
