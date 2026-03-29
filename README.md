@@ -449,12 +449,6 @@ Lakeprobe-main/
 Kaiyu Li · Jia An · Qi Sun
 ---
 
-## Authors
-
-Kaiyu Li · Jia An · Qi Sun
-
----
-
 ## Requirements
 
 Python 3.10+ is required.
