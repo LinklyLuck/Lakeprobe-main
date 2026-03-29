@@ -9,7 +9,7 @@
   <a href="#quick-start">Quick Start</a> •
   <a href="#architecture">Architecture</a> •
   <a href="#benchmark-results">Benchmarks</a> •
-  <a href="#demo-scenarios">Demo Scenarios</a> •
+  <a href="#demo-scenarios">Demo Scenarios</a> 
 </p>
 
 ---
