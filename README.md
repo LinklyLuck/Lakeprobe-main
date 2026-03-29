@@ -1,12 +1,11 @@
 <p align="center">
-  <img src="images/logo.png" alt="LakeProbe Logo" width="180">
+  <img src="logo.png" alt="LakeProbe Logo" width="180">
 </p>
 
 <h1 align="center">LakeProbe</h1>
 <p align="center"><b>Evidence-Based Natural Language Query & Data Discovery for Schema-Less Data Lakes</b></p>
 
 <p align="center">
-  <a href="#demo-video">Demo Video</a> •
   <a href="#quick-start">Quick Start</a> •
   <a href="#architecture">Architecture</a> •
   <a href="#benchmark-results">Benchmarks</a> •
@@ -16,35 +15,13 @@
 
 ---
 
-## Demo Video
-
-A full end-to-end walkthrough of LakeProbe is available in the [v1.0 Release](../../releases/tag/v1.0).
-
-The video covers all three operating modes (Ask, Discover, Enrich), the hallucination guard in action, the audit trail, and live token cost comparison.
+<p align="center">
+  <img src="main-page.png" alt="LakeProbe Interface" width="820">
+</p>
 
 ---
 
-## System Screenshots
-
-**Main Interface** — the LakeProbe home screen with query input, mode selector, and result panels.
-
-<p align="center">
-  <img src="images/main-page.png" alt="LakeProbe Main Interface" width="820">
-</p>
-
-**Analytical Query Mode** — `"average Weight by Breed"`: full pipeline from NL intent to DuckDB result, with retrieval candidates, binding decisions, hallucination guard, audit JSON, and token cost panel displayed side by side.
-
-<p align="center">
-  <img src="images/data_analytical.png" alt="LakeProbe Analytical Query" width="820">
-</p>
-
-**Data Discovery Mode** — `"I want wine dataset to predict quality"`: desired schema generation, top-match column mapping with scores, ranked dataset list, and column profile table.
-
-<p align="center">
-  <img src="images/data_discover.png" alt="LakeProbe Data Discovery" width="820">
-</p>
-
-
+## Overview
 
 LakeProbe answers analytical questions over CSV data lakes **without any schema knowledge**. Unlike Text2SQL systems that require database DDL as input, LakeProbe works entirely from physical evidence — column statistics, data-type profiles, value distributions, and sample values — to bind natural language queries to real columns and execute them via DuckDB.
 
@@ -437,41 +414,8 @@ Lakeprobe-main/
 @inproceedings{lakeprobe2026,
   title     = {LakeProbe: Evidence-Based Natural Language Query Engine for Schema-Less Data Lakes},
   booktitle = {Proceedings of the VLDB Endowment (Demo Track)},
-  year      = {2026},
-  author    = {Li, Kaiyu and An, Jia and Sun, Qi}
+  year      = {2026}
 }
-```
-
----
-
-## Authors
-
-Kaiyu Li · Jia An · Qi Sun
-
----
-
-## Requirements
-
-Python 3.10+ is required.
-
-| Package | Min Version | Purpose |
-|---------|:-----------:|---------|
-| pydantic | ≥ 2.0 | Data models |
-| numpy | ≥ 1.24 | Numerical ops |
-| openai | ≥ 1.0 | LLM API (GPT / DeepSeek / Gemini) |
-| duckdb | ≥ 0.9 | SQL execution engine |
-| pandas | ≥ 2.0 | Profiler fallback |
-| polars | ≥ 0.19 | Fast DataFrame executor |
-| sentence-transformers | ≥ 2.2 | Local embedding (`all-MiniLM-L6-v2`) |
-| scikit-learn | ≥ 1.3 | TF-IDF + SVD fallback |
-| nltk | ≥ 3.8 | WordNet synonym discovery |
-| tiktoken | ≥ 0.5 | Precise token counting |
-| streamlit | ≥ 1.28 | Demo UI |
-| fastapi + uvicorn | ≥ 0.100 / 0.23 | REST API |
-
-After installing, run once:
-```bash
-python -c "import nltk; nltk.download('wordnet'); nltk.download('omw-1.4')"
 ```
 
 ---
